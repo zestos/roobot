@@ -28,7 +28,7 @@ gem 'dotenv-rails'
 gem 'pry'
 gem 'sinatra', '>=1.3.0', :require => nil
 gem 'sidekiq'
-gem 'resque'
+gem 'sidekiq-status'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

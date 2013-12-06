@@ -20,10 +20,6 @@ class MainController < ApplicationController
 
     dropbox_access_token = session[:access_token]
 
-    # dropbox_client = DropboxClient.new(dropbox_access_token)
-
-    # Resque.enqueue(BackupToDropbox,image_urls, dropbox_client)
-
     BackupWorker.perform_async(image_urls, dropbox_access_token)
 
     redirect_to :action => 'index'
