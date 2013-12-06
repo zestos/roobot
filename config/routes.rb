@@ -5,6 +5,7 @@ Roobot::Application.routes.draw do
 
   root to: "main#index"
   get  "backup", to: 'main#backup'
+  get  "status", to: 'main#status'
   get "oauth/connect", to: 'oauth#connect'
   get "oauth/callback", to: 'oauth#callback'
 

@@ -1,5 +1,6 @@
 class BackupWorker
   include Sidekiq::Worker
+  include Sidekiq::Status::Worker
 
   require 'dropbox_sdk'
 

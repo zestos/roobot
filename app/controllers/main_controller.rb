@@ -20,9 +20,18 @@ class MainController < ApplicationController
 
     dropbox_access_token = session[:access_token]
 
-    BackupWorker.perform_async(image_urls, dropbox_access_token)
+    job_id = BackupWorker.perform_async(image_urls, dropbox_access_token)
+
+    session[:job_id] = job_id
 
     redirect_to :action => 'index'
+
+  end
+
+  def status
+
+    job_id = session[:job_id]
+    @status = Sidekiq::Status::get_all job_id
 
   end
 
