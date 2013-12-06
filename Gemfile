@@ -21,9 +21,14 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'instagram'
 gem 'dropbox-sdk'
 gem 'typhoeus'
 gem 'dotenv-rails'
+gem 'pry'
+gem 'sinatra', '>=1.3.0', :require => nil
+gem 'sidekiq'
+gem 'resque'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

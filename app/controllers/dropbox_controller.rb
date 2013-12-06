@@ -14,6 +14,7 @@
 # 4. Run: rails server
 # 5. Point your browser at: https://localhost:3000/dropbox/main
 
+require 'dropbox_sdk'
 require 'securerandom'
 
 APP_KEY = ENV['DROPBOX_KEY']
@@ -22,6 +23,7 @@ APP_SECRET = ENV['DROPBOX_SECRET']
 class DropboxController < ApplicationController
 
     def main
+
         client = get_dropbox_client
         unless client
             redirect_to(:action => 'auth_start') and return
@@ -32,6 +34,14 @@ class DropboxController < ApplicationController
         # Show a file upload page
         render :inline =>
             "#{account_info['email']} <br/><%= form_tag({:action => :upload}, :multipart => true) do %><%= file_field_tag 'file' %><%= submit_tag 'Upload' %><% end %>"
+
+        # image_url = "http://distilleryimage2.ak.instagram.com/788895be570011e3a20b129ac4f86fde_8.jpg"
+
+        # remote_image = open(image_url).read
+
+        # client.put_file("test.jpg", remote_image)
+
+
     end
 
     def upload
@@ -40,8 +50,10 @@ class DropboxController < ApplicationController
             redirect_to(:action => 'auth_start') and return
         end
 
+
         begin
             # Upload the POST'd file to Dropbox, keeping the same name
+
             resp = client.put_file(params[:file].original_filename, params[:file].read)
             render :text => "Upload successful.  File now at #{resp['path']}"
         rescue DropboxAuthError => e
@@ -84,7 +96,7 @@ class DropboxController < ApplicationController
         begin
             access_token, user_id, url_state = get_web_auth.finish(params)
             session[:access_token] = access_token
-            redirect_to :action => 'main'
+            redirect_to :controller => "main", :action => "index"
         rescue DropboxOAuth2Flow::BadRequestError => e
             render :text => "Error in OAuth 2 flow: Bad request: #{e}"
         rescue DropboxOAuth2Flow::BadStateError => e
