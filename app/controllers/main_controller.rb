@@ -17,15 +17,16 @@ class MainController < ApplicationController
     all_media_items << page_1
     max_id = page_1.pagination.next_max_id
 
-    until max_id.nil?
-      next_page = Instagram.user_recent_media(:max_id => max_id )
+    while max_id != nil
+      next_page = instagram_client.user_recent_media(:max_id => max_id )
       all_media_items << next_page
       max_id = next_page.pagination.next_max_id
+      sleep 0.2
     end
 
     image_urls = []
 
-    all_media_items.each do |image|
+    all_media_items[0].each do |image|
       image_urls << image["images"]["standard_resolution"]["url"]
     end
 

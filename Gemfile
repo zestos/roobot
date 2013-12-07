@@ -48,4 +48,4 @@ gem 'sidekiq-status'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
