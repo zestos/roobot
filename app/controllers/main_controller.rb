@@ -10,23 +10,30 @@ class MainController < ApplicationController
 
     instagram_client = Instagram.client(:access_token => session[:instagram_access_token])
 
-    # recent_media_items = instagram_client.user_recent_media
-    all_media_items = []
+    recent_media_items = instagram_client.user_recent_media(:count => -1)
+    # all_media_items = []
 
-    page_1 = instagram_client.user_recent_media
-    all_media_items << page_1
-    max_id = page_1.pagination.next_max_id
+    # page_1 = instagram_client.user_recent_media
+    # all_media_items << page_1
 
-    while max_id != nil
-      next_page = instagram_client.user_recent_media(:max_id => max_id )
-      all_media_items << next_page
-      max_id = next_page.pagination.next_max_id
-      sleep 0.2
-    end
+    # max_id = page_1.pagination.next_max_id
+
+    # until max_id == []
+
+    #   binding.pry
+
+    #   next_page = instagram_client.user_recent_media(:max_id => max_id )
+    #   all_media_items << next_page
+    #   binding.pry
+    #   max_id = next_page.pagination.next_max_id
+
+    #   sleep 0.2
+
+    # end
 
     image_urls = []
 
-    all_media_items[0].each do |image|
+    recent_media_items.each do |image|
       image_urls << image["images"]["standard_resolution"]["url"]
     end
 
@@ -36,7 +43,7 @@ class MainController < ApplicationController
 
     session[:job_id] = job_id
 
-    redirect_to :action => 'index'
+    # redirect_to :action => 'index'
 
   end
 

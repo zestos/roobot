@@ -1,5 +1,7 @@
 # config/unicorn.rb
 worker_processes (ENV["WEB_CONCURRENCY"] || 3).to_i
+
+# worker_processes = 1
 timeout 3600
 preload_app true
 
