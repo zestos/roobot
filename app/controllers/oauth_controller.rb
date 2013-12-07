@@ -1,6 +1,6 @@
 class OauthController < ApplicationController
 
-CALLBACK_URL = "http://roobotapp.herokuapp.com/oauth/callback"
+CALLBACK_URL = "https://roobotapp.herokuapp.com/oauth/callback"
 
   def connect
     redirect_to Instagram.authorize_url(redirect_uri: CALLBACK_URL)
