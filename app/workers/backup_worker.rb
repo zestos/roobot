@@ -4,16 +4,18 @@ class BackupWorker
 
   require 'dropbox_sdk'
 
-  def perform(image_urls, dropbox_access_token)
+  def perform(image_urls, instagram_user, dropbox_access_token)
 
     dropbox_client = DropboxClient.new(dropbox_access_token)
 
-    # Dir.mkdir(File.join(Rails.root, 'tmp'))
+    ig_un = instagram_user
+
+    i = 1
 
     image_urls.each do |url|
       remote_image = Net::HTTP.get(URI.parse(url))
-      # remote_image = open(url).read
-      dropbox_client.put_file("#{DateTime.now.to_s}.jpg", remote_image)
+      dropbox_client.put_file("#{ig_un}_igphoto_#{i}.jpg", remote_image)
+      i += 1
     end
 
   end

@@ -9,8 +9,6 @@ Roobot::Application.routes.draw do
   get "oauth/connect", to: 'oauth#connect'
   get "oauth/callback", to: 'oauth#callback'
 
-  get  "dropbox/main"
-  post "dropbox/upload"
   get  "dropbox/auth_start"
   get  "dropbox/auth_finish"
 

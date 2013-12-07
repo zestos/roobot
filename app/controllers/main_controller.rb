@@ -10,26 +10,9 @@ class MainController < ApplicationController
 
     instagram_client = Instagram.client(:access_token => session[:instagram_access_token])
 
+    instagram_user = instagram_client.user.username.to_s
+
     recent_media_items = instagram_client.user_recent_media(:count => -1)
-    # all_media_items = []
-
-    # page_1 = instagram_client.user_recent_media
-    # all_media_items << page_1
-
-    # max_id = page_1.pagination.next_max_id
-
-    # until max_id == []
-
-    #   binding.pry
-
-    #   next_page = instagram_client.user_recent_media(:max_id => max_id )
-    #   all_media_items << next_page
-    #   binding.pry
-    #   max_id = next_page.pagination.next_max_id
-
-    #   sleep 0.2
-
-    # end
 
     image_urls = []
 
@@ -39,11 +22,11 @@ class MainController < ApplicationController
 
     dropbox_access_token = session[:access_token]
 
-    job_id = BackupWorker.perform_async(image_urls, dropbox_access_token)
+    job_id = BackupWorker.perform_async(image_urls, instagram_user, dropbox_access_token)
 
     session[:job_id] = job_id
 
-    # redirect_to :action => 'index'
+    render nothing: true
 
   end
 
