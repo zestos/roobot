@@ -10,11 +10,22 @@ class MainController < ApplicationController
 
     instagram_client = Instagram.client(:access_token => session[:instagram_access_token])
 
-    recent_media_items = instagram_client.user_recent_media
+    # recent_media_items = instagram_client.user_recent_media
+    all_media_items = []
+
+    page_1 = instagram_client.user_recent_media
+    all_media_items << page_1
+    max_id = page_1.pagination.next_max_id
+
+    until max_id.nil?
+      next_page = Instagram.user_recent_media(:max_id => max_id )
+      all_media_items << next_page
+      max_id = next_page.pagination.next_max_id
+    end
 
     image_urls = []
 
-    recent_media_items.each do |image|
+    all_media_items.each do |image|
       image_urls << image["images"]["standard_resolution"]["url"]
     end
 

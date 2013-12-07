@@ -21,12 +21,16 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :development, :test do
+   gem 'pry'
+   gem 'pry-remote'
+end
+
 gem 'jquery-rails'
 gem 'instagram'
 gem 'dropbox-sdk'
 gem 'typhoeus'
 gem 'dotenv-rails'
-gem 'pry'
 gem 'sinatra', '>=1.3.0', :require => nil
 gem 'sidekiq'
 gem 'sidekiq-status'
