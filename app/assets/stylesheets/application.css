@@ -11,3 +11,33 @@
  *= require_self
  *= require_tree .
  */
+
+.logo {
+  font-family: 'Rum Raisin', sans-serif !important;
+  font-size: 4em !important;
+  color: black !important;
+}
+
+.tagline {
+  padding-top: 13px !important;
+}
+
+.footer {
+  padding-top: 13px !important;
+  text-align: right;
+}
+
+.tagline-text {
+  color: gray;
+  font-size: 1.2em;
+}
+
+.h3 {
+  margin-bottom: 10px !important;
+
+}
+
+body {
+  margin-top: 20px !important;
+}
+

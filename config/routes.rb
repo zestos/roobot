@@ -12,4 +12,6 @@ Roobot::Application.routes.draw do
   get  "dropbox/auth_start"
   get  "dropbox/auth_finish"
 
+  get "logout", to: 'main#logout'
+
 end

@@ -41,4 +41,11 @@ class MainController < ApplicationController
 
   end
 
+  def logout
+    session.delete(:instagram_access_token)
+    session.delete(:access_token)
+
+    redirect_to action: 'index'
+  end
+
 end

@@ -6,7 +6,8 @@ $ ->
   $(".backup").click (event) ->
     event.preventDefault()
 
-    $(".status").text("Backup status: starting")
+    $(".backup").removeClass("btn btn-primary btn-lg btn-block backup").addClass("btn btn-warning btn-lg btn-block backup disabled")
+    $(".backup").text("Starting...")
 
     $.get "/backup"
 
@@ -14,10 +15,18 @@ $ ->
 
     checkStatus = ->
       $.get "/status", (data) ->
+        if data["status"] == "working"
+          $(".backup").text("Working...")
+
+        if data["status"] == "failed"
+          $(".backup").text("Backup Failed")
+          $(".backup").removeClass("btn btn-warning btn-lg btn-block backup disabled").addClass("btn btn-danger btn-lg btn-block backup")
+
         if data["status"] == "complete"
           keep_checking = false
+          $(".backup").text("Backup Complete!")
+          $(".backup").removeClass("btn btn-warning btn-lg btn-block backup disabled").addClass("btn btn-success btn-lg btn-block backup")
         console.log data["status"]
-        $(".status").text("Backup status: " + data["status"])
       , "json"
 
     timer = setInterval ->

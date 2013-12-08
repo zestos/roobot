@@ -1,7 +1,70 @@
-<h1>Roobot</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h1 class="text-left logo">RooBot</h1>
+    </div>
+  </div>
 
-<p><a href="/oauth/connect">Connect with Instagram</a></p>
-<p><a href="/dropbox/auth_start">Connect with Dropbox</a></p>
-<p><a class="backup" href="/backup">Backup Instagram Photos to Dropbox</a></p>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Step 1</h3>
+            </div>
+            <div class="panel-body">
+            <% if session[:instagram_access_token] %>
+              <a href="/oauth/connect" class="btn btn-success btn-lg btn-block">Connected to Instagram</a>
+            <% else %>
+              <a href="/oauth/connect" class="btn btn-primary btn-lg btn-block">Connect to Instagram</a>
+            <% end %>
+             </div>
+          </div>
+        </div>
 
-<p><div class="status"></div></p>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Step 2</h3>
+            </div>
+            <div class="panel-body">
+            <% if session[:access_token] %>
+              <a href="/dropbox/auth_start" class="btn btn-success btn-lg btn-block">Connected to Dropbox</a>
+            <% else %>
+              <a href="/dropbox/auth_start" class="btn btn-primary btn-lg btn-block">Connect to Dropbox</a>
+            <% end %>
+             </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Step 3</h3>
+            </div>
+            <div class="panel-body">
+              <% if session[:access_token] && session[:instagram_access_token] %>
+                <button type="button" class="btn btn-primary btn-lg btn-block backup">Start the Backup</button>
+              <% else %>
+                <button type="button" class="btn btn-primary btn-lg btn-block backup disabled">Start the Backup</button>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1 col-md-offset-1">
+      <%= image_tag("kangaroo.png", height: '51.6', width: '60', class: "media-object") %>
+    </div>
+    <div class="col-md-7 tagline">
+      <span class="tagline-text">Painlessly archive your Instagram photos to Dropbox</span>
+    </div>
+    <div class="col-md-2 footer">
+      <span class="tagline-text"><a href="/logout">Logout</a> | <a href="https://github.com/zestos/roobot">About</a></span>
+    </div
+  </div>
+</div>
+</div>
