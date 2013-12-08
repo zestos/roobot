@@ -2,7 +2,7 @@
 
 Painlessly archive your Instagram photos to Dropbox.
 
-##Built With:
+##Built With
 * Instagram API gem
 * Dropbox SDK
 * Ruby on Rails
