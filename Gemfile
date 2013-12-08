@@ -29,7 +29,6 @@ end
 gem 'jquery-rails'
 gem 'instagram'
 gem 'dropbox-sdk'
-gem 'typhoeus'
 gem 'dotenv-rails'
 gem 'sinatra', '>=1.3.0', :require => nil
 gem 'sidekiq'
@@ -49,4 +48,4 @@ gem 'sidekiq-status'
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
+# gem 'debugger'
