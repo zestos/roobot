@@ -1,7 +1,10 @@
+sk_route = '/sidekiq/' + ENV['SIDEKIQ_SECRET']
+
 Roobot::Application.routes.draw do
 
   require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+
+  mount Sidekiq::Web => sk_route
 
   root to: "main#index"
   get  "backup", to: 'main#backup'
