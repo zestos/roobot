@@ -14,7 +14,7 @@ class MainController < ApplicationController
 
     image_urls = []
 
-    page_1 = Instagram.user_recent_media
+    page_1 = instagram_client.user_recent_media
 
     page_1.each do |image|
       image_urls << image["images"]["standard_resolution"]["url"]
@@ -24,7 +24,7 @@ class MainController < ApplicationController
 
     until next_page_max_id.nil?
 
-      next_page = Instagram.user_recent_media(:max_id => next_page_max_id )
+      next_page = instagram_client.user_recent_media(:max_id => next_page_max_id )
 
       next_page.each do |image|
         image_urls << image["images"]["standard_resolution"]["url"]
