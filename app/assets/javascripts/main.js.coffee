@@ -26,11 +26,10 @@ $ ->
           keep_checking = false
           $(".backup").text("Backup Complete!")
           $(".backup").removeClass("btn btn-warning btn-lg btn-block backup disabled").addClass("btn btn-success btn-lg btn-block backup")
-        console.log data["status"]
+
       , "json"
 
     timer = setInterval ->
       if keep_checking == false
         clearInterval(timer)
       checkStatus()
-    , 5000

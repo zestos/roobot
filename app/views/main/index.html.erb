@@ -45,9 +45,22 @@
             </div>
             <div class="panel-body">
               <% if session[:access_token] && session[:instagram_access_token] %>
-                <button type="button" class="btn btn-primary btn-lg btn-block backup">Start the Backup</button>
+
+                <% if @status == "working" %>
+                  <button type="button" class="btn btn-warning btn-lg btn-block backup disabled">Working...</button>
+
+                <% elsif @status == "complete" %>
+                  <button type="button" class="btn btn-success btn-lg btn-block backup">Backup Complete!</button>
+
+                <% elsif @status == "failed" %>
+                  <button type="button" class="btn btn-danger btn-lg btn-block backup">Backup Failed</button>
+
+                <% else %>
+                  <button type="button" class="btn btn-primary btn-lg btn-block backup">Start the Backup</button>
+                <% end %>
+
               <% else %>
-                <button type="button" class="btn btn-primary btn-lg btn-block backup disabled">Start the Backup</button>
+                  <button type="button" class="btn btn-primary btn-lg btn-block backup disabled">Start the Backup</button>
               <% end %>
             </div>
           </div>

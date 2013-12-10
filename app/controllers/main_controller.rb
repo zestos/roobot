@@ -4,6 +4,10 @@ class MainController < ApplicationController
 
   def index
 
+    job_id = session[:job_id]
+    job = Sidekiq::Status::get_all job_id
+    @status = job["status"]
+
   end
 
   def backup
@@ -58,6 +62,7 @@ class MainController < ApplicationController
   def logout
     session.delete(:instagram_access_token)
     session.delete(:access_token)
+    session.delete(:job_id)
 
     redirect_to action: 'index'
   end
