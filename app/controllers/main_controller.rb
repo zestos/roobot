@@ -12,12 +12,26 @@ class MainController < ApplicationController
 
     instagram_user = instagram_client.user.username.to_s
 
-    recent_media_items = instagram_client.user_recent_media(:count => -1)
-
     image_urls = []
 
-    recent_media_items.each do |image|
+    page_1 = Instagram.user_recent_media
+
+    page_1.each do |image|
       image_urls << image["images"]["standard_resolution"]["url"]
+    end
+
+    next_page_max_id = page_1.pagination.next_max_id
+
+    until next_page_max_id.nil?
+
+      next_page = Instagram.user_recent_media(:max_id => next_page_max_id )
+
+      next_page.each do |image|
+        image_urls << image["images"]["standard_resolution"]["url"]
+      end
+
+      next_page_max_id = next_page.pagination.next_max_id
+
     end
 
     dropbox_access_token = session[:access_token]
