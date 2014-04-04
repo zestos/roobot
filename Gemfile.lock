@@ -83,6 +83,7 @@ GEM
     mime-types (1.25.1)
     multi_json (1.8.2)
     multipart-post (1.2.0)
+    newrelic_rpm (3.7.3.204)
     pg (0.17.0)
     polyglot (0.3.3)
     pry (0.9.12.3)
@@ -171,6 +172,7 @@ DEPENDENCIES
   instagram
   jquery-rails
   librato-rails
+  newrelic_rpm
   pg
   pry
   pry-remote
