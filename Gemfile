@@ -33,6 +33,7 @@ gem 'dotenv-rails'
 gem 'sinatra', '>=1.3.0', :require => nil
 gem 'sidekiq'
 gem 'sidekiq-status'
+gem 'librato-rails'
 
 
 # To use ActiveModel has_secure_password
