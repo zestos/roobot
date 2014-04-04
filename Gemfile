@@ -34,6 +34,7 @@ gem 'sinatra', '>=1.3.0', :require => nil
 gem 'sidekiq'
 gem 'sidekiq-status'
 gem 'librato-rails'
+gem 'newrelic_rpm'
 
 
 # To use ActiveModel has_secure_password
